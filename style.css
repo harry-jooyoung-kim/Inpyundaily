@@ -1,0 +1,27 @@
+
+body
+{
+width: 480px;
+margin: 0 auto;
+background-color: red;
+}
+
+.controller{
+    background-color: white;
+}
+
+.subtitle{
+    color: whitesmoke;
+    font-size: 20px;
+    }
+    
+.title{
+    color: whitesmoke;
+    font-size: 30px;
+}
+
+#output{
+    width: 480px;
+    min-height: 100px;
+
+}
