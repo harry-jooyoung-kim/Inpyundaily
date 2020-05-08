@@ -1,0 +1,24 @@
+{
+  "name": "inpyundaily",
+  "version": "1.0.0",
+  "description": "inpyundaily",
+  "main": "func.js",
+  "scripts": {
+    "test": "hello"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harry-jooyoung-kim/Inpyundaily.git"
+  },
+  "author": "harry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harry-jooyoung-kim/Inpyundaily/issues"
+  },
+  "homepage": "https://github.com/harry-jooyoung-kim/Inpyundaily#readme",
+  "dependencies": {
+    "python-shell": "^2.0.0",
+    "require": "^2.4.20",
+    "requirejs": "^2.3.6"
+  }
+}

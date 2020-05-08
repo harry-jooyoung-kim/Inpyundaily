@@ -1,3 +1,4 @@
+
 // 글자 수 카운터 값 변경
 $(document).on('keyup', '#output', function(e) {
     var output = $(this).val();
@@ -103,6 +104,7 @@ function Newscreator() {
     if (chk1) {
         var url_politics = url1 + 100 + url2 + date[0];
         creatednews.value += ("정 치\n")
+        bringcontents(1,date[0])
         creatednews.value += (url_politics + "\n");
     }
     if (chk2) {
@@ -144,3 +146,35 @@ function Newscreator() {
     }
     resize(creatednews);
 }
+
+function bringcontents(cat,today) {
+    
+    var creatednews = document.getElementById('output');
+    var requirejs = require('requirejs');
+    requirejs.config({
+        baseUrl: func.js,
+        nodeRequire: require
+    });    
+
+
+        console.log(1)
+        var {PythonShell} = requirejs ('python-shell');
+
+    var options = {
+        mode: 'text',
+        encoding: 'utf8',
+        pythonOptions: ['-u'],
+        scriptPath: '',
+        args: [cat,today],
+        pythonPath: ''
+      };
+
+    PythonShell.run('crawl.py', options, function (err, results) { 
+        if (err) throw err; 
+        alert('hello');
+        let data = results; 
+        alert(results);
+        creatednews.value+=data;
+    }); 
+
+    }

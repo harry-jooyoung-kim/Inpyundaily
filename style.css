@@ -6,12 +6,16 @@ margin: 0 auto;
 background-color: burlywood;
 }
 
+.btn{
+    background-color: gold;
+}
+
 .controller{
     background-color: white;
 }
 
 .subtitle{
-    color: whitesmoke;
+    color: black;
     font-size: 20px;
     }
     

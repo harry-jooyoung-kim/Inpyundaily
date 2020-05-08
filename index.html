@@ -51,11 +51,11 @@
             <br/>
         </form>
     </div>
-    <button type="button" class="btn btn-primary" onclick="Newscreator()">전송</button>
+    <button type="button" class="btn" onclick="Newscreator()">전송</button>
     <br/><br/>
     <div>
         <span id="outputcounter" >0</span>&nbsp;<span>/&nbsp;2000자</span>
-        <button class="btn btn-primary" id="copy2clip"data-clipboard-target="#output">클립보드에 복사</button>
+        <button class="btn" id="copy2clip"data-clipboard-target="#output">클립보드에 복사</button>
     </div>
     <div>
         <textarea id="output" name="output" onkeydown="resize(this)" onkeyup="resize(this)" placeholder="카테고리를 선택하세요."></textarea>
@@ -68,9 +68,9 @@
     <script
     src="https://code.jquery.com/jquery-3.5.1.js"
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+    crossorigin="anonymous"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>   
     <script src="func.js"></script>
-
+    <script data-main="func.js" src="require.js"></script>
 </body>
 </html>
