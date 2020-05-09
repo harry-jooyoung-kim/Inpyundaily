@@ -11,9 +11,9 @@
 <body>
     <br/>
     <br/>
-    <h1 class="title">인편데일리</h1>
+    <h1 class="title centered">인편데일리</h1>
     <br>
-    <h1 class="subtitle">실시간 뉴스</h1>
+    <h1 class="subtitle centered">실시간 뉴스</h1>
     <div class="controller">
         <form name="newscontrol" action=""> 
             <div class="form-check form-check-inline">
@@ -48,19 +48,25 @@
                 <label class="form-check-label" for="checkbox7_news">스포츠</label> 
   
             </div>
-            <br/>
         </form>
     </div>
-    <button type="button" class="btn" onclick="Newscreator()">전송</button>
+    <br/>
+    <button type="button" class="btn centered" onclick="Newscreator()">전송</button>
     <br/><br/>
-    <div>
-        <span id="outputcounter" >0</span>&nbsp;<span>/&nbsp;2000자</span>
-        <button class="btn" id="copy2clip"data-clipboard-target="#output">클립보드에 복사</button>
+   
+    <div class="rightwarded counter"> 
+        <span id="outputcounter" >0</span>&nbsp;<span>/&nbsp;2000자</span>&nbsp;&nbsp;
     </div>
+
     <div>
         <textarea id="output" name="output" onkeydown="resize(this)" onkeyup="resize(this)" placeholder="카테고리를 선택하세요."></textarea>
     </div>
 
+    <br>
+
+    <div class="centered"> 
+        <button class="btn" id="copy2clip" data-clipboard-target="#output">클립보드에 복사</button>
+    </div>
 
 
 
@@ -71,6 +77,6 @@
     crossorigin="anonymous"></script>  
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>   
     <script src="func.js"></script>
-    <script data-main="func.js" src="require.js"></script>
+
 </body>
 </html>
