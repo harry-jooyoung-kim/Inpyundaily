@@ -90,13 +90,12 @@ function Newscreator() {
     var chk4 = document.news.checkbox4_news.checked;
     var chk5 = document.news.checkbox5_news.checked;
     var chk6 = document.news.checkbox6_news.checked;
-    var chk7 = document.news.checkbox7_news.checked;
     var date=getdate();
     var creatednews = document.getElementById('output');
     var outputcounter = document.getElementById('outputcounter');
     creatednews.value = []
 
-    if (chk1 | chk2 | chk3 | chk4 | chk5 | chk6 | chk7) {
+    if (chk1 | chk2 | chk3 | chk4 | chk5 | chk6) {
         creatednews.value += ("####" + date[1] + "년" + date[2] + "월" + date[3] + "일자 인편데일리####\n")
         creatednews.value += ("###########실시간 뉴스###########\n")
     }
@@ -130,11 +129,6 @@ function Newscreator() {
         var url_it = url1 + 105 + url2 + date[0];
         creatednews.value += ("I T\n")
         creatednews.value += (url_it + "\n");
-    }
-    if (chk7) {
-        var url_sport = "https://sports.news.naver.com/index.nhn";
-        creatednews.value += ("스포츠\n")
-        creatednews.value += (url_sport + "\n");
     }
 
     outputcounter.innerText = getBytes(output.value);
