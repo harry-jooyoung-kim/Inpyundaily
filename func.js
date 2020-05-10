@@ -16,7 +16,7 @@ function counterchange(int) {
     if (int == 1) {
         x.style.color = "red";
     } else {
-        x.style.color = "black";
+        x.style.color = "whitesmoke";
     }
 }
 
