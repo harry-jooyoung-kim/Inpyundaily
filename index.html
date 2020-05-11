@@ -17,10 +17,10 @@
     <div class="controller">
         <form name="newscontrol" action=""> 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" onclick='check_all();' name="checkboxall_news" value="optionall">
+                <input class="form-check-input" type="checkbox" onclick='check_all_news();' name="checkboxall_news" value="optionall">
                 <label class="form-check-label" for="checkboxall_news">전체 선택</label>
                 &nbsp;&nbsp;
-                <input class="form-check-input" type="checkbox" onclick='cancel_all();' name="checkboxnone_news" value="optionnone">
+                <input class="form-check-input" type="checkbox" onclick='cancel_all_news();' name="checkboxnone_news" value="optionnone">
                 <label class="form-check-label" for="checkboxnone_news">전체 선택 해제</label>
             </div>
         </form>
@@ -47,8 +47,39 @@
             </div>
         </form>
     </div>
+    <br>
+
+        <h1 class="subtitle centered">주가 정보</h1>
+        <div class="input-group mb-3">
+                <input type="text" class="form-control searchstock" placeholder="정확한 종목명을 입력하세요." aria-label="text_stock" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" id="button-addon2">추가</button>
+                </div>
+        </div>
+
+    <div class="controller">
+        <form name="stockcontrol" action=""> 
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" onclick='check_all_stock();' name="checkboxall_stock" value="optionall">
+                <label class="form-check-label" for="checkboxall_stock">전체 선택</label>
+                &nbsp;&nbsp;
+                <input class="form-check-input" type="checkbox" onclick='cancel_all_stock();' name="checkboxnone_stock" value="optionnone">
+                <label class="form-check-label" for="checkboxnone_stock">전체 선택 해제</label>
+                &nbsp;&nbsp;
+            </div>
+        </form>
+        <form name="stock" action="">    
+            <div class="form-check form-check-inline" id="stock_chk">
+                <input class="form-check-input" type="checkbox" name='options' id="checkboxstock1" value="option1">
+                <label class="form-check-label" for="checkboxstock1" name="stockname1">코스피</label>
+                &nbsp;&nbsp;
+                <input class="form-check-input" type="checkbox" name='options' id="checkboxstock2" value="option2">
+                <label class="form-check-label" for="checkboxstock2" id="stockname2">코스닥</label>
+            </div>
+        </form>
+    </div>
     <br/>
-    <button type="button" class="btn centered" onclick="Newscreator()">생 성</button>
+    <button type="button" class="btn centered" onclick="Newscreator(); Stockcreator()">생 성</button>
     <br/><br/>
    
     <div class="rightwarded counter"> 

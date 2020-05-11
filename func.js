@@ -1,3 +1,13 @@
+$(document).ready(function() {
+    
+    var idx = 3;
+    $("#button-addon2").on("click", function() {
+      $("#stock_chk").append("&nbsp;&nbsp;<input type='checkbox' class='form-check-input' name='options' id='checkboxstock"+idx+"' value='option"+idx+"'/>");
+      $("#stock_chk").append("<label class='form-check-label' for='checkboxstock"+idx+"' id='stockname"+idx+"'>"+$('.searchstock').val()+"</label>");
+      stock.options[idx-1].checked = true;
+      idx++;
+    });
+});
 
 // 글자 수 카운터 값 변경
 $(document).on('keyup', '#output', function(e) {
@@ -28,20 +38,35 @@ function getBytes(str) {
     }
     return cnt;
 }
-// 전체 선택 함수
-function check_all() {
+// 뉴스 전체 선택 함수
+function check_all_news() {
     for (i = 0; i < news.options.length; i++) {
         news.options[i].checked = true;
     }
 
 }
-// 전체 취소 함수
-function cancel_all() {
+// 뉴스 전체 취소 함수
+function cancel_all_news() {
     for (i = 0; i < news.options.length; i++) {
         news.options[i].checked = false;
     }
     newscontrol.checkboxall_news.checked = false;
     newscontrol.checkboxnone_news.checked = false;
+}
+// 주식 전체 선택 함수
+function check_all_stock() {
+    for (i = 0; i < stock.options.length; i++) {
+        stock.options[i].checked = true;
+    }
+
+}
+// 주식 전체 취소 함수
+function cancel_all_stock() {
+    for (i = 0; i < stock.options.length; i++) {
+        stock.options[i].checked = false;
+    }
+    stockcontrol.checkboxall_stock.checked = false;
+    stockcontrol.checkboxnone_stock.checked = false;
 }
 
 // textarea 높이 조절 함수
@@ -61,74 +86,105 @@ clipboard.on('error', function() {
 });
 
 function getdate() {
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth() + 1; //January is 0!
-var yyyy = today.getFullYear();
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var hour = today.getHours();
+    var minute = today.getMinutes();
+    var yyyy = today.getFullYear();
 
-if (dd < 10) {
-    dd = '0' + dd
-}
+    if (dd < 10) {
+        dd = '0' + dd
+    }
 
-if (mm < 10) {
-    mm = '0' + mm
-}
+    if (mm < 10) {
+        mm = '0' + mm
+    }
 
-today = yyyy + mm + dd;
-return [today, yyyy, mm, dd];
+    today = yyyy + mm + dd;
+    return [today, yyyy, mm, dd,hour,minute];
 }
 
 // 뉴스 생성 함수
 function Newscreator() {
 
-
-    var url1 = "https://news.naver.com/main/ranking/popularDay.nhn?rankingType=popular_day&sectionId="
-    var url2 = "&date="
-    var chk1 = document.news.checkbox1_news.checked;
-    var chk2 = document.news.checkbox2_news.checked;
-    var chk3 = document.news.checkbox3_news.checked;
-    var chk4 = document.news.checkbox4_news.checked;
-    var chk5 = document.news.checkbox5_news.checked;
-    var chk6 = document.news.checkbox6_news.checked;
     var date=getdate();
     var creatednews = document.getElementById('output');
     var outputcounter = document.getElementById('outputcounter');
+
+    var isnews=0;
+    for (i = 0; i < news.options.length; i++) {
+        if (news.options[i].checked == true){
+            isnews+=1;
+        }
+    }
+
+    newslen=Math.floor(28/isnews);
+
     creatednews.value = []
-
-    if (chk1 | chk2 | chk3 | chk4 | chk5 | chk6) {
-        creatednews.value += ("####" + date[1] + "년" + date[2] + "월" + date[3] + "일자 인편데일리####\n")
-        creatednews.value += ("###########실시간 뉴스###########\n")
+    creatednews.value += ("#" + date[1] + "년" + date[2] + "월" + date[3] + "일자 인편데일리, "+date[4]+"시"+date[5]+"분에 작성 되었습니다.#\n")
+    
+    if (isnews) {
+        creatednews.value += ("##실시간 뉴스##\n")
     }
 
-    if (chk1) {
-        var url_politics = url1 + 100 + url2 + date[0];
+    if (document.news.checkbox1_news.checked) {
+        // crawl(1,date[0],newslen)
         creatednews.value += ("정 치\n")
-        creatednews.value += (url_politics + "\n");
     }
-    if (chk2) {
-        var url_economy = url1 + 101 + url2 + date[0];
+    if (document.news.checkbox2_news.checked) {
+        // crawl(2,date[0],newslen)
         creatednews.value += ("경 제\n")
-        creatednews.value += (url_economy + "\n");
     }
-    if (chk3) {
-        var url_society = url1 + 102 + url2 + date[0];
+    if (document.news.checkbox3_news.checked) {
+        // crawl(3,date[0],newslen)
         creatednews.value += ("사 회\n")
-        creatednews.value += (url_society + "\n");
     }
-    if (chk4) {
-        var url_entertain = url1 + 103 + url2 + date[0];
-        creatednews.value += ("연 예\n")
-        creatednews.value += (url_entertain + "\n");
+    if (document.news.checkbox4_news.checked) {
+        // crawl(4,date[0],newslen)
+        creatednews.value += ("문 화\n")
     }
-    if (chk5) {
-        var url_world = url1 + 104 + url2 + date[0];
+    if (document.news.checkbox5_news.checked) {
+        // crawl(5,date[0],newslen)
         creatednews.value += ("세 계\n")
-        creatednews.value += (url_world + "\n");
     }
-    if (chk6) {
-        var url_it = url1 + 105 + url2 + date[0];
-        creatednews.value += ("I T\n")
-        creatednews.value += (url_it + "\n");
+    if (document.news.checkbox6_news.checked) {
+        // crawl(6,date[0],newslen)
+        creatednews.value += ("과 학\n")
+    }
+
+    outputcounter.innerText = getBytes(output.value);
+    if (outputcounter.innerText > 2000) {
+        counterchange(1);
+    } else {
+        counterchange(0);
+    }
+    resize(creatednews);
+}
+
+// 주가 생성 함수
+function Stockcreator() {
+
+    var creatednews = document.getElementById('output');
+    var outputcounter = document.getElementById('outputcounter');
+
+    var isstock=0;
+    for (i = 0; i < stock.options.length; i++) {
+        if (stock.options[i].checked == true){
+            isstock=1;
+        }
+    }
+
+    if (isstock){
+    creatednews.value += ("##주식 정보##\n")
+    }
+
+    for (i = 0; i < stock.options.length; i++) {
+        if (stock.options[i].checked == true){
+            var tmp=$("label[for='checkboxstock"+(i+1)+"']").text();
+            creatednews.value += (tmp+"\n")
+            creatednews.value += ("시가:"+"고가:"+"전일비:"+"거래량:"+"\n")
+        }
     }
 
     outputcounter.innerText = getBytes(output.value);

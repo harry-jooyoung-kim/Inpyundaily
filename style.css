@@ -4,6 +4,11 @@ body
 font-family: 'BMEULJIRO';
 }
 
+.searchstock{
+font-family: 'MapoGoldenPier';
+width: 30%;
+float: left;
+}
 .container {
 width: 100%;
 height:100%;
@@ -11,7 +16,8 @@ text-align: center;
 background: url('imgs/camouflage.jpg');
 background-repeat: repeat;
 }
-.container::after{
+
+/*.container::after{
     width: 100%;
     height:100%;
     content: "";
@@ -23,6 +29,8 @@ background-repeat: repeat;
     z-index: -1;
     opacity:0.4;
 }
+*/
+
 @font-face { font-family: 'MapoGoldenPier'; 
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') format('woff'); 
     font-weight: normal; 
