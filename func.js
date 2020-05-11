@@ -1,7 +1,8 @@
-$(document).ready(function() {
-    
+// 주식종목 추가 함수
+$(document).ready(function() { 
     var idx = 3;
     $("#button-addon2").on("click", function() {
+     //stockinlist($('.searchstock').val())
       $("#stock_chk").append("&nbsp;&nbsp;<input type='checkbox' class='form-check-input' name='options' id='checkboxstock"+idx+"' value='option"+idx+"'/>");
       $("#stock_chk").append("<label class='form-check-label' for='checkboxstock"+idx+"' id='stockname"+idx+"'>"+$('.searchstock').val()+"</label>");
       stock.options[idx-1].checked = true;
@@ -183,7 +184,7 @@ function Stockcreator() {
         if (stock.options[i].checked == true){
             var tmp=$("label[for='checkboxstock"+(i+1)+"']").text();
             creatednews.value += (tmp+"\n")
-            creatednews.value += ("시가:"+"고가:"+"전일비:"+"거래량:"+"\n")
+            creatednews.value += ("시가:"+"고가:"+"저가:"+"종가:"+"거래량:"+"전일비:"+"\n")
         }
     }
 

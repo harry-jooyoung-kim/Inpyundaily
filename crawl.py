@@ -1,23 +1,15 @@
-def hello_world(request):
-        """Responds to any HTTP request.
-        Args:
-            request (flask.Request): HTTP request object.
-        Returns:
-            The response text or any set of values that can be turned into a
-            Response object using
-            `make_response <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>`.
-        """
-
-    from urllib.urllib import urlopen
+def crawl(request):
+    from urllib.request import urlopen
     from bs4 import BeautifulSoup
     
     request_json = request.get_json()
 
-    cat=request.args[1]
-    date=request.args[2]
+    cat=request_json[0]
+    date=request_json[1]
+    ran=request_json[2]
 
     categorynum=int(cat)
-
+    rank=int(ran)
     html = urlopen("https://news.naver.com/main/ranking/popularDay.nhn?rankingType=popular_day&sectionId="+str(99+categorynum)+"&date="+str(date))  
 
     category=["gov","eco","soc","lif","wor","sci"]
@@ -30,11 +22,10 @@ def hello_world(request):
     text_refine_news=[]
     fact_check=['①','②','③','④','⑤','⑥','⑦','⑧','⑨','⑩']
     eow=[' ', '"', '.', '…', '\'','·','“','”','‘','’','`' ]  
-    eos=['.', '…','·']
+    eos=['"', '.', '\'','·','“','”','‘','’','`']
 
     for text_refine in news:
-        cnt=0;
-        leng=0
+        cnt=0
         tmp_string='*'
         
         for word in range(len(text_refine)):
@@ -46,17 +37,19 @@ def hello_world(request):
             elif text_refine[word] in fact_check:
                 break
             elif cnt == 0:
-                if  text_refine[word] in eow:
-                    tmp_string=tmp_string+' '
-                    leng+=1                  
+                if text_refine[word] == '.' and text_refine[word+1] == '.' and text_refine[word+2] == '.':
+                    tmp_string=tmp_string+'…'
+                elif text_refine[word] == '·' and text_refine[word+1] == '·' and text_refine[word+2] == '·':
+                    tmp_string=tmp_string+'…'
+                elif  text_refine[word] in eos:
+                    pass     
                 else:
                     tmp_string=tmp_string+text_refine[word]
-                    leng+=1       
         text_refine_news.append(tmp_string) 
 
     content_refine_news=[]
     keyword=[]
-
+    itemcnt=0
     for content_refine in text_refine_news:
         cnt=0
         tmp_keyword='*'
@@ -69,11 +62,16 @@ def hello_world(request):
                 elif tmp_keyword in keyword and len(tmp_keyword)>1:
                     cnt+=1
                 tmp_keyword='*'
-        if cnt < 2 and len(content_refine) > 20:
+        if cnt < 2 and len(content_refine) > 20 and itemcnt < rank:
             if content_refine[1] == ' ':
                 content_refine_news.append(content_refine[2:len(content_refine)])
+                itemcnt+=1
             else:
                 content_refine_news.append(content_refine[1:len(content_refine)])
+                itemcnt+=1
                     
+    news=str()
+    for i in content_refine_news:
+        news+=i+"\n"
 
-    return content_refine_news
+    return news
