@@ -64,19 +64,19 @@ background-repeat: repeat;
 
 .controller{
     background-color: whitesmoke;
-    font-size: 12px;
+    font-size: 15px;
     text-align: center;
 }
 
 .subtitle{
     color: whitesmoke;
-    font-size: 20px;
+    font-size: 30px;
     text-align: center;
 }
     
 .title{
     color: whitesmoke;
-    font-size: 30px;
+    font-size: 45px;
     font-family: 'BMEULJIRO';
     text-align: center;
 }
