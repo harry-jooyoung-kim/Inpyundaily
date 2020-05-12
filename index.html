@@ -6,32 +6,29 @@
     <title>인편 데일리</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-<!-- update the version number as needed -->
-<script defer src="/__/firebase/7.14.3/firebase-app.js"></script>
-<!-- include only the Firebase features as you need -->
-<script defer src="/__/firebase/7.14.3/firebase-auth.js"></script>
-<script defer src="/__/firebase/7.14.3/firebase-database.js"></script>
-<script defer src="/__/firebase/7.14.3/firebase-messaging.js"></script>
-<script defer src="/__/firebase/7.14.3/firebase-storage.js"></script>
-<!-- initialize the SDK after all desired features are loaded -->
-<script defer src="/__/firebase/init.js"></script>
+
 </head>
 <body class="container">
     <br/>
     <br/>
     <h1 class="title centered container-fluid">인편 데일리</h1>
     <br>
+    <h1 class="instruction centered container-fluid">인터넷 편지에 붙여넣을 수 있도록 실시간 정보를 생성합니다. 전달하고 싶은 실시간 뉴스와 주식 정보를 선택하고 생성 버튼을 눌러 인편 데일리를 생성하세요. </h1>
+    <br>
+    <br/>
     <h1 class="subtitle centered">실시간 뉴스</h1>
-    <div class="controller">
+    <div class="controller2">
         <form name="newscontrol" action=""> 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" onclick='check_all();' name="checkboxall_news" value="optionall">
+                <input class="form-check-input" type="checkbox" onclick='check_all_news();' name="checkboxall_news" value="optionall">
                 <label class="form-check-label" for="checkboxall_news">전체 선택</label>
                 &nbsp;&nbsp;
-                <input class="form-check-input" type="checkbox" onclick='cancel_all();' name="checkboxnone_news" value="optionnone">
+                <input class="form-check-input" type="checkbox" onclick='cancel_all_news();' name="checkboxnone_news" value="optionnone">
                 <label class="form-check-label" for="checkboxnone_news">전체 선택 해제</label>
             </div>
         </form>
+    </div>
+        <div class="controller">
         <form name="news" action="">    
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" name='options' id="checkbox1_news" value="option1">
@@ -45,18 +42,52 @@
                 &nbsp;&nbsp;
                 <input class="form-check-input" type="checkbox" name='options' id="checkbox4_news" value="option4">
                 <label class="form-check-label" for="checkbox4_news">문화</label>  
-                &nbsp;&nbsp;
+            </div>    <br>
+                <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" name='options' id="checkbox5_news" value="option5">
                 <label class="form-check-label" for="checkbox5_news">세계</label>  
                 &nbsp;&nbsp; 
                 <input class="form-check-input" type="checkbox" name='options' id="checkbox6_news" value="option6">
                 <label class="form-check-label" for="checkbox6_news">과학</label>   
-  
+            </div>
+        </form>
+    </div>
+    <br>
+
+        <h1 class="subtitle centered">주식 정보</h1>
+        <div class="input-group mb-3">
+                <input type="text" class="form-control searchstock" placeholder="종목명, 혹은 종목코드를 입력하세요." aria-label="text_stock" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" id="button-addon2">추가</button>
+                </div>
+        </div>
+
+    <div class="controller2">
+        <form name="stockcontrol" action=""> 
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" onclick='check_all_stock();' name="checkboxall_stock" value="optionall">
+                <label class="form-check-label" for="checkboxall_stock">전체 선택</label>
+                &nbsp;&nbsp;
+                <input class="form-check-input" type="checkbox" onclick='cancel_all_stock();' name="checkboxnone_stock" value="optionnone">
+                <label class="form-check-label" for="checkboxnone_stock">전체 선택 해제</label>
+            </div>
+        </form>
+    </div>
+        <div class="controller">
+        <form name="stock" action="">    
+            <div class="form-check form-check-inline" id="stock_chk">
+                <input class="form-check-input" type="checkbox" name='options' id="checkboxstock1" value="option1">
+                <label class="form-check-label" for="checkboxstock1" name="stockname1">삼성전자</label>
+                &nbsp;&nbsp;
+            <!--
+                <input class="form-check-input" type="checkbox" name='options' id="checkboxstock2" value="option2">
+                <label class="form-check-label" for="checkboxstock2" id="stockname2">SK</label>
+            -->
             </div>
         </form>
     </div>
     <br/>
-    <button type="button" class="btn centered" onclick="Newscreator()">생 성</button>
+    <button type="button" class="btn btn-outline-secondary centered" onclick="Newscreator(); Stockcreator()">생 성</button>
     <br/><br/>
    
     <div class="rightwarded counter"> 
@@ -70,7 +101,7 @@
     <br>
 
     <div class="centered"> 
-        <button class="btn" id="copy2clip" data-clipboard-target="#output">클립보드에 복사</button>
+        <button class="btn btn-outline-secondary" id="copy2clip" data-clipboard-target="#output">클립보드에 복사</button>
     </div>
 
 
