@@ -1,15 +1,15 @@
-#def crawl(request):
-def crawl(cat,date):
+def crawl(request):
     from urllib.request import urlopen
     from bs4 import BeautifulSoup
     
-    #request_json = request.get_json()
+    request_json = request.get_json()
 
-    #cat=request.args[1]
-    #date=request.args[2]
+    cat=request_json[0]
+    date=request_json[1]
+    ran=request_json[2]
 
     categorynum=int(cat)
-    rank=5
+    rank=int(ran)
     html = urlopen("https://news.naver.com/main/ranking/popularDay.nhn?rankingType=popular_day&sectionId="+str(99+categorynum)+"&date="+str(date))  
 
     category=["gov","eco","soc","lif","wor","sci"]
@@ -70,18 +70,8 @@ def crawl(cat,date):
                 content_refine_news.append(content_refine[1:len(content_refine)])
                 itemcnt+=1
                     
+    news=str()
+    for i in content_refine_news:
+        news+=i+"\n"
 
-    return content_refine_news
-
-def crawl_all (request):
-    request_json = request.get_json()
-
-    cat=request.args[1]
-    date=request.args[2]
-    news=[]
-    title=['정치','경제','사회','연예','세계','IT']
-    for i in cat:
-        news.append(title[int(i)])
-        news.append(crawl(int(i)+1,date))
-    
     return news
