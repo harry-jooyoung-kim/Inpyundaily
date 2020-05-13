@@ -2359,19 +2359,30 @@ var stocklist=[
 
 var idx=2;
 $("#button-addon2").on("click", function() {
-    var chkk=0;
+    var chk1=0;
+    var chk2=0;
+    var tmpsave=0;
     for (i = 0; i < stocklist.length; i++) {
         if ($('.searchstock').val().toUpperCase() === stocklist[i].name |$('.searchstock').val() === stocklist[i].code){
-            idx=idx+1;
+            chk1=1;
             console.log($('.searchstock').val());
-            $("#stock_chk").append("<input type='checkbox' class='form-check-input' name='options2' id='checkboxstock"+idx+"' value='option"+idx+"' checked/>");
-            $("#stock_chk").append("<label class='form-check-label' for='checkboxstock"+idx+"' id='stockname"+idx+"'>"+stocklist[i].name+"</label>&nbsp;&nbsp;");
-            alert('추가 되었습니다.');
-            chkk=1;
-            }    
+            tmpsave=i;
+        }
     }
+    for (i = 0; i < stock.options2.length; i++) {
+        if ($("label[for='checkboxstock"+(i+1)+"']").text() === $('.searchstock').val().toUpperCase()){
+            alert('이미 추가되었습니다.');
+            chk2=1;
+        }
+    }
+    if (chk2===0 & chk1===1){
+        idx=idx+1;
+        $("#stock_chk").append("<input type='checkbox' class='form-check-input' name='options2' id='checkboxstock"+idx+"' value='option"+idx+"' checked/>");
+        $("#stock_chk").append("<label class='form-check-label' for='checkboxstock"+idx+"' id='stockname"+idx+"'>"+stocklist[tmpsave].name+"</label>&nbsp;&nbsp;");
+        alert('추가 되었습니다.');
+    }    
     console.log(idx)
-     if (chkk===0){
+     if (chk1===0){
          alert('주식 정보가 올바르지 않습니다.');   
      }
 });
@@ -2473,19 +2484,22 @@ function getdate() {
     return [today, yyyy, mm, dd,hour,minute];
 }
 var newsdone=0;
-var isnews=0;
+var newstobe=0;
 
 // 뉴스 생성 함수
-async function Newscreator() {
+function Newscreator() {
     loading.show();
     var date=getdate();
     var creatednews = document.getElementById('output');
+    var isnews=0;
+    var newslen=0;
 
     for (i = 0; i < news.options.length; i++) {
         if (news.options[i].checked == true){
             isnews+=1;
         }
     }
+    newstobe=isnews;
 
     newslen=Math.floor(25/isnews);
 
@@ -2497,7 +2511,11 @@ async function Newscreator() {
     }
     else if(isnews===0){
         loading.hide();
+        newsdone=0;
+        stockdone=0;
+        Stockcreator();
     }
+
     for (i = 0; i < news.options.length; i++) {
         if (news.options[i].checked == true){
             crawljs(i+1,date[0],newslen);
@@ -2506,12 +2524,13 @@ async function Newscreator() {
 }
 
 var stockdone=0;
-var isstock=0;
+var stocktobe=0;
 
 // 주가 생성 함수
-async function Stockcreator() {
-
+function Stockcreator() {
+    loading.show();
     var creatednews = document.getElementById('output');
+    var isstock=0;
 
     for (i = 0; i < stock.options2.length; i++) {
         if (stock.options2[i].checked == true){
@@ -2519,11 +2538,15 @@ async function Stockcreator() {
         }
     }
 
+    stocktobe=isstock;
+
     if(isstock>0){
         creatednews.value += ("#주식 정보#\n");  
     }
     else if(isstock===0){
         loading.hide();
+        newsdone=0;
+        stockdone=0;
     }
 
     for (i = 0; i < stock.options2.length; i++) {
@@ -2553,9 +2576,6 @@ function crawljs(newsid,datee,newslen){
     var oReq2= new XMLHttpRequest();
     var creatednews = document.getElementById('output');
     var outputcounter = document.getElementById('outputcounter');
-    console.log(newsid);
-    console.log(datee);
-    console.log(newslen);
     oReq2.addEventListener("load", function(){
         if(newsid===1){
             creatednews.value += ("정 치\n");          
@@ -2587,7 +2607,11 @@ function crawljs(newsid,datee,newslen){
         resize(creatednews);
 
         newsdone=newsdone+1;
-        if (newsdone===isnews){
+        console.log("newsdone:");
+        console.log(newsdone);                
+        console.log("newstobe:");
+        console.log(newstobe);
+        if (newsdone===newstobe){
             Stockcreator();
         }
     });
@@ -2614,7 +2638,13 @@ function stockreadjs(stockname,stockcode){
                 resize(creatednews);  
 
                 stockdone=stockdone+1;
-                if (stockdone===isstock){
+                console.log("stockdone:");
+                console.log(stockdone);
+                console.log("stocktobe:");
+                console.log(stocktobe);
+                if (stockdone===stocktobe){
+                    newsdone=0;
+                    stockdone=0;
                     loading.hide();
                 }    
     });
