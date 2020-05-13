@@ -9,6 +9,7 @@
 
 </head>
 <body class="container">
+    
     <br/>
     <br/>
     <h1 class="title centered container-fluid">인편 데일리</h1>
@@ -42,8 +43,7 @@
                 &nbsp;&nbsp;
                 <input class="form-check-input" type="checkbox" name='options' id="checkbox4_news" value="option4">
                 <label class="form-check-label" for="checkbox4_news">문화</label>  
-            </div>    <br>
-                <div class="form-check form-check-inline">
+                &nbsp;&nbsp; 
                 <input class="form-check-input" type="checkbox" name='options' id="checkbox5_news" value="option5">
                 <label class="form-check-label" for="checkbox5_news">세계</label>  
                 &nbsp;&nbsp; 
@@ -86,9 +86,9 @@
         </form>
     </div>
     <br/>
-    <button type="button" class="btn btn-outline-secondary centered" onclick="Newscreator(); Stockcreator()">생 성</button>
+    <button type="button" class="btn btn-outline-secondary centered" onclick="Newscreator()">생 성</button>
     <br/><br/>
-   
+  
     <div class="rightwarded counter"> 
         <span id="outputcounter" >0</span>&nbsp;<span>/&nbsp;2000자</span>&nbsp;&nbsp;
     </div>
@@ -113,5 +113,6 @@
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>   
     <script src="func.js"></script>
 
+    <div class="modal"><!-- Place at bottom of page --></div>
 </body>
 </html>

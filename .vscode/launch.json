@@ -10,8 +10,7 @@
             "name": "Launch Program",
             "skipFiles": [
                 "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}\\crawl.py"
+            ]
         }
     ]
 }
