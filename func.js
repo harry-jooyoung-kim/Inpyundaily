@@ -2624,4 +2624,4 @@ function stockreadjs(stockname,stockcode){
     oReq3.send(JSON.stringify([stockcode]));
 }
 
-var loading = $('<div class="spinner-border spinner text-primary" style="width: 5rem; height: 5rem;" role="status"><span class="sr-only">Loading...</span></div>').appendTo(document.body).hide();
+var loading = $('<div class="spinner-border spinner text-light" style="width: 5rem; height: 5rem;" role="status"><span class="sr-only">Loading...</span></div>').appendTo(document.body).hide();
