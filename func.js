@@ -2487,7 +2487,7 @@ async function Newscreator() {
         }
     }
 
-    newslen=Math.floor(30/isnews);
+    newslen=Math.floor(25/isnews);
 
     creatednews.value = [];
     creatednews.value += ("##" + date[1] + "년" + date[2] + "월" + date[3] + "일자 인편데일리, "+date[4]+"시"+date[5]+"분에 작성 되었습니다.##\n");
