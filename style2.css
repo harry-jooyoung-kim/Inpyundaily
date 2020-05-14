@@ -1,0 +1,112 @@
+
+body
+{
+font-family: 'BMEULJIRO';
+}
+
+.searchstock{
+font-family: 'MapoGoldenPier';
+width: 30%;
+float: left;
+}
+.container {
+width: 100%;
+height:100%;
+text-align: center;
+background-color: whitesmoke;
+}
+/*
+.container::after{
+    width: 100%;
+    height:100%;
+    content: "";
+    background: url('imgs/camouflage.jpg');
+    background-repeat: cover;
+    position: absolute;
+    top: 0;
+    left: 0;   
+    z-index: -1;
+    opacity:0.4;
+}
+*/
+
+@font-face { font-family: 'MapoGoldenPier'; 
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') format('woff'); 
+    font-weight: normal; 
+    font-style: normal; 
+}
+
+@font-face { 
+    font-family: 'BMEULJIRO'; 
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BMEULJIRO.woff') format('woff'); 
+    font-weight: normal; 
+    font-style: normal; 
+}
+
+.centered { 
+    display: table; margin-left: auto; margin-right: auto; 
+} 
+
+.rightwarded { 
+    display: table; margin-left: auto; margin-right: 0; 
+} 
+        
+.spinner {
+display: block;
+position: fixed;
+z-index: 1031;
+top: calc(48%);
+left: calc(40%);
+
+}
+.controller{
+    background-color: lightgrey;
+    font-size: 20px;
+    text-align: center;
+    padding-block-start: 15px;
+    padding-block-end: 15px;
+}
+
+.controller2{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-block-start: 5px;
+    padding-block-end: 5px;   
+    background: url('camouflage.jpg');
+}
+
+.counter{
+    color:black;
+}
+
+.btn{
+    color: white;
+    background: url('camouflage.jpg');
+}
+
+.subtitle{
+    color: black;
+    font-size: 30px;
+    text-align: center;
+}
+    
+.title{
+    color: black;
+    font-size: 45px;
+    text-align: center;
+}
+
+.instruction{
+    color: black;
+    font-size: 20px;
+    text-align: center; 
+}
+
+#output{
+    min-height: 100px;
+    font-family: 'MapoGoldenPier';
+}
