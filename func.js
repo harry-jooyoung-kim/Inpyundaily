@@ -2624,6 +2624,9 @@ function Sportcreator() {
         crawlbaseballjs(1,date[2],date[3],sportlen);
     }
 
+    if (sport.options3[1].checked == true){         
+        crawlbaseballjs(2,date[2],date[3],sportlen);
+    }
     // for (i = 0; i < sport.options3.length; i++) {
     //     if (sport.options3[i].checked == true){
     //         crawlsportjs(i+1,date[0],newslen);
@@ -2713,16 +2716,16 @@ function stockreadjs(stockname,stockcode){
 
 var loading = $('<div class="spinner-border spinner text-dark" style="width: 5rem; height: 5rem;" role="status"><span class="sr-only">Loading...</span></div>').appendTo(document.body).hide();
 
-function crawlbaseballjs(newsid,monthh,datee,sportlen){
+function crawlbaseballjs(sportid,monthh,datee,sportlen){
     var oReq2= new XMLHttpRequest();
     var creatednews = document.getElementById('output');
     var outputcounter = document.getElementById('outputcounter');
     oReq2.addEventListener("load", function(){
-        
+    if  (sportid === 1)  {
         creatednews.value += ("프로야구\n");          
 
         console.log(this.responseText);
-        creatednews.value += (this.responseText+"\n");    
+        creatednews.value += (this.responseText+"\n\n");    
         outputcounter.innerText = getBytes(output.value);
         if (outputcounter.innerText > 2000) {
             counterchange(1);
@@ -2730,7 +2733,19 @@ function crawlbaseballjs(newsid,monthh,datee,sportlen){
             counterchange(0);
         }
         resize(creatednews);
+    }
+    else if (sportid === 2){
+        creatednews.value += ("해외야구\n");    
+        creatednews.value += ("경기 일정이 없습니다.\n\n");    
 
+        outputcounter.innerText = getBytes(output.value);
+        if (outputcounter.innerText > 2000) {
+            counterchange(1);
+        } else {
+            counterchange(0);
+        }
+        resize(creatednews);
+    }
         sportdone=sportdone+1;
         console.log("sportdone:");
         console.log(sportdone);                
