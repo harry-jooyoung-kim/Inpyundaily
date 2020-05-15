@@ -2422,7 +2422,6 @@ function check_all_news() {
     for (i = 0; i < news.options.length; i++) {
         news.options[i].checked = true;
     }
-
 }
 // 뉴스 전체 취소 함수
 function cancel_all_news() {

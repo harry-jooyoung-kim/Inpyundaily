@@ -1,7 +1,7 @@
 
 body
 {
-font-family: 'BMEULJIRO';
+font-family: 'Binggrae-Bold';
 }
 
 .searchstock{
@@ -35,13 +35,17 @@ background-color: whitesmoke;
     font-weight: normal; 
     font-style: normal; 
 }
-
-@font-face { 
+@font-face { font-family: 'Binggrae-Bold'; 
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff'); 
+    font-weight: normal; 
+    font-style: normal; 
+}
+/* @font-face { 
     font-family: 'BMEULJIRO'; 
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BMEULJIRO.woff') format('woff'); 
     font-weight: normal; 
     font-style: normal; 
-}
+} */
 
 .centered { 
     display: table; margin-left: auto; margin-right: auto; 
