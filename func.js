@@ -2448,6 +2448,22 @@ function cancel_all_stock() {
     stockcontrol.checkboxnone_stock.checked = false;
 }
 
+// 스포츠 전체 선택 함수
+function check_all_sport() {
+    for (i = 0; i < sport.options3.length; i++) {
+        sport.options3[i].checked = true;
+    }
+
+}
+// 스포츠 전체 취소 함수
+function cancel_all_sport() {
+    for (i = 0; i < sport.options3.length; i++) {
+        sport.options3[i].checked = false;
+    }
+    sportcontrol.checkboxall_sport.checked = false;
+    sportcontrol.checkboxnone_sport.checked = false;
+}
+
 // textarea 높이 조절 함수
 function resize(obj) {
     obj.style.height = "1px";
@@ -2481,7 +2497,7 @@ function getdate() {
     }
 
     today = yyyy + mm + dd;
-    return [today, yyyy, mm, dd,hour,minute];
+    return [today, yyyy, mm, dd,hour, minute];
 }
 var newsdone=0;
 var newstobe=0;
@@ -2513,6 +2529,7 @@ function Newscreator() {
         loading.hide();
         newsdone=0;
         stockdone=0;
+        sportdone=0;
         Stockcreator();
     }
 
@@ -2547,6 +2564,8 @@ function Stockcreator() {
         loading.hide();
         newsdone=0;
         stockdone=0;
+        sportdone=0;
+        Sportcreator();
     }
 
     for (i = 0; i < stock.options2.length; i++) {
@@ -2570,6 +2589,47 @@ function Stockcreator() {
             stockreadjs(stockname,stockinput);
         }
     }
+}
+
+var sporttobe=0;
+var sportdone=0;
+
+// 스포츠 생성 함수
+function Sportcreator() {
+    loading.show();
+    var date=getdate();
+    var creatednews = document.getElementById('output');
+    var issport=0;
+    var sportlen=0;
+
+    for (i = 0; i < sport.options3.length; i++) {
+        if (sport.options3[i].checked == true){
+            issport+=1;
+        }
+    }
+    sporttobe=issport;
+
+    sportlen=4;
+
+    if(issport>0){
+        creatednews.value += ("#스포츠 결과#\n");  
+    }
+    else if(issport===0){
+        loading.hide();
+        newsdone=0;
+        stockdone=0;
+        sportdone=0;
+    }
+
+    if (sport.options3[0].checked == true){
+        crawlbaseballjs(1,date[2],date[3],sportlen);
+    }
+
+    // for (i = 0; i < sport.options3.length; i++) {
+    //     if (sport.options3[i].checked == true){
+    //         crawlsportjs(i+1,date[0],newslen);
+    //     }
+    // }
 }
 
 function crawljs(newsid,datee,newslen){
@@ -2628,7 +2688,7 @@ function stockreadjs(stockname,stockcode){
     oReq3.addEventListener("load",function(){
                 creatednews.value += (stockname+"\n")
                 console.log(this.responseText);
-                creatednews.value += (this.responseText+"\n");
+                creatednews.value += (this.responseText+"\n\n");
                 outputcounter.innerText = getBytes(output.value);
                 if (outputcounter.innerText > 2000) {
                     counterchange(1);
@@ -2643,9 +2703,7 @@ function stockreadjs(stockname,stockcode){
                 console.log("stocktobe:");
                 console.log(stocktobe);
                 if (stockdone===stocktobe){
-                    newsdone=0;
-                    stockdone=0;
-                    loading.hide();
+                    Sportcreator();
                 }    
     });
     oReq3.open("POST", "https://us-central1-inpyundaily.cloudfunctions.net/stockread");
@@ -2655,3 +2713,46 @@ function stockreadjs(stockname,stockcode){
 }
 
 var loading = $('<div class="spinner-border spinner text-dark" style="width: 5rem; height: 5rem;" role="status"><span class="sr-only">Loading...</span></div>').appendTo(document.body).hide();
+
+function crawlbaseballjs(newsid,monthh,datee,sportlen){
+    var oReq2= new XMLHttpRequest();
+    var creatednews = document.getElementById('output');
+    var outputcounter = document.getElementById('outputcounter');
+    oReq2.addEventListener("load", function(){
+        
+        creatednews.value += ("프로야구\n");          
+
+        console.log(this.responseText);
+        creatednews.value += (this.responseText+"\n");    
+        outputcounter.innerText = getBytes(output.value);
+        if (outputcounter.innerText > 2000) {
+            counterchange(1);
+        } else {
+            counterchange(0);
+        }
+        resize(creatednews);
+
+        sportdone=sportdone+1;
+        console.log("sportdone:");
+        console.log(sportdone);                
+        console.log("sporttobe:");
+        console.log(sporttobe);
+        if (sportdone===1){
+            newsdone=0;
+            stockdone=0;
+            sportdone=0;
+            loading.hide();
+        }
+        // if (sportdone===sporttobe){
+        //     newsdone=0;
+        //     stockdone=0;
+        //     sportdone=0;
+        //     loading.hide();
+        // }
+    });
+    oReq2.open("POST", "https://us-central1-inpyundaily.cloudfunctions.net/crawl_baseball");
+    oReq2.setRequestHeader('Content-Type', 'application/json');
+    oReq2.setRequestHeader('Accept', 'application/json');
+    console.log(monthh,datee,sportlen);
+    oReq2.send(JSON.stringify([monthh,datee,sportlen]));
+}

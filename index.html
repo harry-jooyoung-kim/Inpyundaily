@@ -87,6 +87,44 @@
         </form>
     </div>
     <br/>
+    <h1 class="subtitle centered">스포츠</h1>
+    <div class="controller2">
+        <form name="sportcontrol" action=""> 
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" onclick='check_all_sport();' name="checkboxall_sport" value="optionall">
+                <label class="form-check-label" for="checkboxall_sport">전체 선택</label>
+                &nbsp;&nbsp;
+                <input class="form-check-input" type="checkbox" onclick='cancel_all_sport();' name="checkboxnone_sport" value="optionnone">
+                <label class="form-check-label" for="checkboxnone_sport">전체 선택 해제</label>
+            </div>
+        </form>
+    </div>
+        <div class="controller">
+        <form name="sport" action="">    
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name='options3' id="checkbox1_sport" value="option1">
+                <label class="form-check-label" for="checkbox1_sport">프로야구</label>
+                 &nbsp;&nbsp;
+                <input class="form-check-input" type="checkbox" name='options3' id="checkbox2_sport" value="option2">
+                <label class="form-check-label" for="checkbox2_sport">해외야구</label>
+                <!--
+                &nbsp;&nbsp;
+                <input class="form-check-input" type="checkbox" name='options' id="checkbox3_sport" value="option3">
+                <label class="form-check-label" for="checkbox3_sport">프로축구</label>
+                &nbsp;&nbsp;
+                <input class="form-check-input" type="checkbox" name='options' id="checkbox4_sport" value="option4">
+                <label class="form-check-label" for="checkbox4_sport">해외축구</label>  
+            </div><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name='options' id="checkbox5_sport" value="option5">
+                <label class="form-check-label" for="checkbox5_sport">프로농구</label>  
+                &nbsp;&nbsp; 
+                <input class="form-check-input" type="checkbox" name='options' id="checkbox6_sport" value="option6">
+                <label class="form-check-label" for="checkbox6_sport">e스포츠</label>    -->
+            </div>
+        </form>
+    </div>
+    <br/>
     <button type="button" class="btn btn-outline-secondary centered" onclick="Newscreator()">생 성</button>
     <br/>
   
@@ -103,6 +141,8 @@
     <div class="centered"> 
         <button class="btn btn-outline-secondary" id="copy2clip" data-clipboard-target="#output">클립보드에 복사</button>
     </div>
+
+    <br>
 
 
 
