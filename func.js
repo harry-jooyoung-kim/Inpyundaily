@@ -2751,7 +2751,7 @@ function crawlbaseballjs(sportid,monthh,datee,sportlen){
         console.log(sportdone);                
         console.log("sporttobe:");
         console.log(sporttobe);
-        if (sportdone===1){
+        if (sportdone===sporttobe){
             newsdone=0;
             stockdone=0;
             sportdone=0;
