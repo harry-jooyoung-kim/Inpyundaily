@@ -110,6 +110,12 @@ left: calc(40%);
     text-align: center; 
 }
 
+.copyright{
+    color: black;
+    font-size: 5px;
+    text-align: center; 
+}
+
 #output{
     min-height: 100px;
     font-family: 'MapoGoldenPier';
