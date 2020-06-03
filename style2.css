@@ -97,7 +97,11 @@ left: calc(40%);
     font-size: 30px;
     text-align: center;
 }
-    
+   
+.ad-banner{
+    width: 320px;
+    margin: 0 auto;
+}
 .title{
     color: black;
     font-size: 45px;
