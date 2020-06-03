@@ -120,6 +120,13 @@ left: calc(40%);
     text-align: center; 
 }
 
+.youtube-link {
+    font-size: 13px;
+    text-align: center;
+    color: black;
+    text-decoration: underline;
+}
+
 #output{
     min-height: 100px;
     font-family: 'MapoGoldenPier';
